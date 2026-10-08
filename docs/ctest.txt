@@ -1,0 +1,10 @@
+Internal ctest changing into directory: /Users/fronas/Documents/ChatGPT/Snittaren/build
+Test project /Users/fronas/Documents/ChatGPT/Snittaren/build
+    Start 1: dsp
+1/2 Test #1: dsp ..............................   Passed    1.05 sec
+    Start 2: state
+2/2 Test #2: state ............................   Passed    0.45 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) =   1.50 sec

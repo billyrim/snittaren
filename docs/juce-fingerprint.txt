@@ -1,0 +1,2 @@
+dd9fd594409425ec2badf770d67c1c6880ce946b04f3722068741ad8e9ab2ecc  /Users/fronas/Downloads/JUCE-master/CMakeLists.txt
+4dc07a77438b4fd1c43026b0c655f061896d41d36725741782b95ea37100f790  /Users/fronas/Downloads/JUCE-master/modules/juce_audio_processors/juce_audio_processors.h

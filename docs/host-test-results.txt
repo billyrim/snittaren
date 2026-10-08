@@ -1,0 +1,4 @@
+State and audio round-trip PASS
+Mono/stereo, 44.1/48/88.2/96 kHz, irregular blocks 1..1024 and oversize block PASS
+Bypass original level despite Output +12 dB PASS
+One instance, stereo 48k/128, 10s audio: 0.0246502s wall, 0.246502% of one realtime budget (offline measurement)
