@@ -1,0 +1,4 @@
+Stability / 27 macro combinations / stereo / isolation / decay PASS; noise input +/-0.2 peak=0.425698 sample delta=0.561732
+All 15 neutral response roles and Sprickor depth/macros PASS
+Rapid mode/macro/output/bypass 440Hz sine stress: max sample delta=0.00611776 (<0.05) PASS; not a listening test
+20Hz..20kHz sweep, 0.1 peak input, finite output below 1 PASS

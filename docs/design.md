@@ -1,5 +1,7 @@
 # Tekniska val och preliminär bankrevision 1
 
+Historik för 0.1.x. Aktuell utökning till 15 lägen i 0.2.0 beskrivs i [bankrevision 2](bank-v2.md).
+
 ## Signalväg
 
 `Source/Presets.h` innehåller läsbara presetdefinitioner och MacroMapper-funktionen
@@ -74,3 +76,11 @@ en ny leverans. Filterminne är inte state; statisk ljudjämförelse görs efter
 Prototypen är lokal, ingen push eller publicering gjord. GitHub-repot kontrollerades
 med `git ls-remote` och annonserade inga refs (tomt repo). Projektmappen hade inga
 befintliga filer eller projektinstruktioner att återanvända.
+
+## UI- och namnrevision 0.1.1
+
+Tillverkarnamnet i JUCE/AU-metadata är Fronas. `BlRm`, `Snit` och
+`se.billyrim.snittaren` är kvar som tekniska identiteter för kompatibilitet med
+sparade projekt. Parameter-ID:n, index, stateversion och bankrevision är oförändrade.
+Klangbeskrivningen och textfälten under Botten/Mitt/Topp har tagits bort ur editorn.
+Output visar dB som tidigare. Fönstret är 600 × 320 och layouten har komprimerats.

@@ -1,0 +1,5 @@
+State and audio round-trip PASS
+All 15 mode states/audio and legacy bank-1 restoration PASS
+Mono/stereo, 44.1/48/88.2/96 kHz, irregular blocks 1..1024 and oversize block PASS
+Bypass original level despite Output +12 dB PASS
+One instance, stereo 48k/128, 10s audio: 0.0631528s wall, 0.631528% of one realtime budget (offline measurement)

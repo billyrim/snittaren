@@ -10,4 +10,5 @@ if [[ -d "$destination/SNITTAREN.component" ]]; then
 fi
 ditto "$source_bundle" "$destination/SNITTAREN.component"
 codesign --force --deep --sign - "$destination/SNITTAREN.component"
+touch "$destination/SNITTAREN.component"
 print 'Installed. Quit and reopen Logic, then run: auval -v aufx Snit BlRm'

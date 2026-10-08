@@ -7,20 +7,20 @@
 --------------------------------------------------
 VALIDATING AUDIO UNIT: 'aufx' - 'Snit' - 'BlRm'
 --------------------------------------------------
-Manufacturer String: Billy Rim
+Manufacturer String: Fronas
 AudioUnit Name: SNITTAREN
-Component Version: 0.1.0 (0x100)
+Component Version: 0.2.0 (0x200)
 
 * * PASS
 --------------------------------------------------
 TESTING OPEN TIMES:
 COLD:
-Time to open AudioUnit:         332.141 ms
+Time to open AudioUnit:         5.548 ms
 WARM:
-Time to open AudioUnit:         1.486  ms
+Time to open AudioUnit:         0.826  ms
 This AudioUnit is a version 2 implementation.
 FIRST TIME:
-Time for initialization:        0.010 ms
+Time for initialization:        0.006 ms
 
 * * PASS
 --------------------------------------------------
@@ -65,7 +65,7 @@ VERIFYING SPECIAL PROPERTIES:
 
 VERIFYING CUSTOM UI
 Cocoa Views Available: 1
-  JUCE_AUCocoaViewClass_24c8f5c4431a1d46
+  JUCE_AUCocoaViewClass_db66d2d940eb43fa
     PASS
 
 HAS FACTORY PRESETS
@@ -92,15 +92,25 @@ Flags: Values Have Strings, High Resolution, Can Ramp, Readable, Writable
 Parameter ID:3357091
 Name: Klang
 Parameter Type: Indexed
-Values: Minimum = Filt, Default = Tom mitt, Maximum = Resonanta öar
+Values: Minimum = Filt, Default = Tom mitt, Maximum = Sprickor
 Flags: Values Have Strings, High Resolution, Readable, Writable
 Parameter has Value Strings
-Num Strings = 5
+Num Strings = 15
 Value: 0,  String: Filt
 Value: 1,  String: Frost
 Value: 2,  String: Botten + luft
 Value: 3,  String: Tom mitt
 Value: 4,  String: Resonanta öar
+Value: 5,  String: Underström
+Value: 6,  String: Mörk kropp
+Value: 7,  String: Trä
+Value: 8,  String: Avlägsen radio
+Value: 9,  String: Strängrest
+Value: 10,  String: Skimmer
+Value: 11,  String: Luftrest
+Value: 12,  String: Kropp + skimmer
+Value: 13,  String: Två röster
+Value: 14,  String: Sprickor
   -parameter PASS
 
 Parameter ID:764254763

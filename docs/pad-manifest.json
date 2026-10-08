@@ -1,0 +1,127 @@
+[
+  {
+    "source": "/Users/fronas/Documents/snittaren-pads/Absenteechords.aif",
+    "sha256": "6bf6563f6e598054ff76f938f82bcab321a24949cfdc8f8a09d994335d77d2b3",
+    "duration_seconds": 46.41303854875284,
+    "rate": 44100,
+    "channels": 2,
+    "source_metrics": {
+      "rms_dbfs": -25.072785050408122,
+      "peak_dbfs": -7.554955356255119
+    },
+    "excerpt_start_seconds": 0.0,
+    "excerpt_seconds": 12.0,
+    "excerpt_metrics": {
+      "rms_dbfs": -24.39799783261528,
+      "peak_dbfs": -9.061119954130456
+    },
+    "spectral_energy_percent": {
+      "below250": 62.038,
+      "250to2500": 37.96,
+      "2500to5000": 0.001,
+      "above5000": 0.0
+    },
+    "common_input_trim_db": -12,
+    "warmup_seconds": 0.0
+  },
+  {
+    "source": "/Users/fronas/Documents/snittaren-pads/droplets.aif",
+    "sha256": "125084340a42e9a83b53e2a3c897ba61132f68f2e1876ff7235b892507f247b3",
+    "duration_seconds": 82.05439909297053,
+    "rate": 44100,
+    "channels": 2,
+    "source_metrics": {
+      "rms_dbfs": -25.28957194195487,
+      "peak_dbfs": -12.050747675672419
+    },
+    "excerpt_start_seconds": 36.0,
+    "excerpt_seconds": 12.0,
+    "excerpt_metrics": {
+      "rms_dbfs": -25.05676133188356,
+      "peak_dbfs": -13.003364999282148
+    },
+    "spectral_energy_percent": {
+      "below250": 29.544,
+      "250to2500": 70.441,
+      "2500to5000": 0.015,
+      "above5000": 0.0
+    },
+    "common_input_trim_db": -12,
+    "warmup_seconds": 2.0
+  },
+  {
+    "source": "/Users/fronas/Documents/snittaren-pads/eftershards-maskinen.aif",
+    "sha256": "f6f81a981fab26dae7afe06139bb32f3e5552d13b27b174a5667b70f36cff1f8",
+    "duration_seconds": 468.567074829932,
+    "rate": 44100,
+    "channels": 2,
+    "source_metrics": {
+      "rms_dbfs": -28.760815554205085,
+      "peak_dbfs": -9.6052085210254
+    },
+    "excerpt_start_seconds": 162.0,
+    "excerpt_seconds": 12.0,
+    "excerpt_metrics": {
+      "rms_dbfs": -31.078171751326188,
+      "peak_dbfs": -17.213920034135754
+    },
+    "spectral_energy_percent": {
+      "below250": 15.706,
+      "250to2500": 84.285,
+      "2500to5000": 0.009,
+      "above5000": 0.0
+    },
+    "common_input_trim_db": -12,
+    "warmup_seconds": 2.0
+  },
+  {
+    "source": "/Users/fronas/Documents/snittaren-pads/rymdstrakar.aif",
+    "sha256": "8f0130aa326b5af0d707da44ffa34a2ad243f59867f806e06c8f30b565adfee1",
+    "duration_seconds": 184.0,
+    "rate": 44100,
+    "channels": 2,
+    "source_metrics": {
+      "rms_dbfs": -26.180605472463043,
+      "peak_dbfs": -15.034450623880392
+    },
+    "excerpt_start_seconds": 120.0,
+    "excerpt_seconds": 12.0,
+    "excerpt_metrics": {
+      "rms_dbfs": -25.779245996240377,
+      "peak_dbfs": -15.034450623880392
+    },
+    "spectral_energy_percent": {
+      "below250": 54.388,
+      "250to2500": 45.502,
+      "2500to5000": 0.107,
+      "above5000": 0.002
+    },
+    "common_input_trim_db": -12,
+    "warmup_seconds": 2.0
+  },
+  {
+    "source": "/Users/fronas/Documents/snittaren-pads/scalertest.aif",
+    "sha256": "ea81d300690c5a5752e5939bd766f15b4b70e01d4f801e0c6c795f863f8c7999",
+    "duration_seconds": 84.02963718820861,
+    "rate": 44100,
+    "channels": 2,
+    "source_metrics": {
+      "rms_dbfs": -23.299409810256794,
+      "peak_dbfs": -8.513721609360584
+    },
+    "excerpt_start_seconds": 6.0,
+    "excerpt_seconds": 12.0,
+    "excerpt_metrics": {
+      "rms_dbfs": -23.325659256114534,
+      "peak_dbfs": -9.57881612853976
+    },
+    "spectral_energy_percent": {
+      "below250": 0.943,
+      "250to2500": 99.052,
+      "2500to5000": 0.004,
+      "above5000": 0.0
+    },
+    "common_input_trim_db": -12,
+    "warmup_seconds": 2.0
+  }
+]

@@ -1,0 +1,1 @@
+Original five modes: sample-identical with frozen 0.1.1 engine at 44.1/48/96k, automated macros/modes/output/bypass PASS

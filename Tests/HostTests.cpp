@@ -14,6 +14,27 @@ int main(int argc,char** argv) {
  juce::AudioBuffer<float>x(2,127),y(2,127);
  for(int n=0;n<1000;++n){for(int c=0;c<2;++c)for(int i=0;i<127;++i)x.setSample(c,i,.2f*std::sin(float(n*127+i)*.07f));y.makeCopyOf(x);a.processBlock(x,midi);b.processBlock(y,midi);for(int c=0;c<2;++c)for(int i=0;i<127;++i)require(x.getSample(c,i)==y.getSample(c,i),"State audio");}
  std::cout<<"State and audio round-trip PASS\n";
+ // All discrete choices survive state. Revision-1 states preserve original integer indices.
+ for(int mode=0;mode<snitt::presetCount;++mode) {
+  Snittaren saved,restored;set(saved,"mode",float(mode));set(saved,"bottom",37);set(saved,"bypass",0);
+  juce::MemoryBlock blob;saved.getStateInformation(blob);restored.setStateInformation(blob.getData(),int(blob.getSize()));
+  require(int(restored.values[0]->load())==mode,"15-mode state");
+  if(mode<5) {
+   auto tree=saved.state.copyState();tree.setProperty("stateVersion",1,nullptr);tree.setProperty("bankRevision",1,nullptr);
+   juce::AudioProcessor::copyXmlToBinary(*tree.createXml(),blob);
+   set(restored,"mode",14);restored.setStateInformation(blob.getData(),int(blob.getSize()));
+   require(int(restored.values[0]->load())==mode && std::abs(restored.values[1]->load()-37)<.001f,"Legacy state");
+  }
+  saved.prepareToPlay(48000,64);restored.prepareToPlay(48000,64);
+  juce::AudioBuffer<float> left(2,64),right(2,64);
+  for(int block=0;block<400;++block) {
+   for(int c=0;c<2;++c)for(int i=0;i<64;++i)left.setSample(c,i,.1f*std::sin((block*64+i)*.05f));
+   right.makeCopyOf(left);saved.processBlock(left,midi);restored.processBlock(right,midi);
+   for(int c=0;c<2;++c)for(int i=0;i<64;++i)require(left.getSample(c,i)==right.getSample(c,i),"15-mode state audio");
+  }
+ }
+ std::cout<<"All 15 mode states/audio and legacy bank-1 restoration PASS\n";
+
  for(double rate:{44100.,48000.,88200.,96000.})for(int channels:{1,2}) {
   Snittaren whole,split;auto layout=whole.getBusesLayout();layout.inputBuses.set(0,juce::AudioChannelSet::canonicalChannelSet(channels));layout.outputBuses=layout.inputBuses;
   require(whole.setBusesLayout(layout)&&split.setBusesLayout(layout),"Mono/stereo layout");
