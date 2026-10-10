@@ -18,9 +18,9 @@ int main(int argc,char** argv) {
  for(int mode=0;mode<snitt::presetCount;++mode) {
   Snittaren saved,restored;set(saved,"mode",float(mode));set(saved,"bottom",37);set(saved,"bypass",0);
   juce::MemoryBlock blob;saved.getStateInformation(blob);restored.setStateInformation(blob.getData(),int(blob.getSize()));
-  require(int(restored.values[0]->load())==mode,"15-mode state");
-  if(mode<5) {
-   auto tree=saved.state.copyState();tree.setProperty("stateVersion",1,nullptr);tree.setProperty("bankRevision",1,nullptr);
+  require(int(restored.values[0]->load())==mode,"All-mode state");
+  if(mode<15) {
+   auto tree=saved.state.copyState();tree.setProperty("stateVersion",1,nullptr);tree.setProperty("bankRevision",mode<5?1:2,nullptr);
    juce::AudioProcessor::copyXmlToBinary(*tree.createXml(),blob);
    set(restored,"mode",14);restored.setStateInformation(blob.getData(),int(blob.getSize()));
    require(int(restored.values[0]->load())==mode && std::abs(restored.values[1]->load()-37)<.001f,"Legacy state");
@@ -30,10 +30,10 @@ int main(int argc,char** argv) {
   for(int block=0;block<400;++block) {
    for(int c=0;c<2;++c)for(int i=0;i<64;++i)left.setSample(c,i,.1f*std::sin((block*64+i)*.05f));
    right.makeCopyOf(left);saved.processBlock(left,midi);restored.processBlock(right,midi);
-   for(int c=0;c<2;++c)for(int i=0;i<64;++i)require(left.getSample(c,i)==right.getSample(c,i),"15-mode state audio");
+   for(int c=0;c<2;++c)for(int i=0;i<64;++i)require(left.getSample(c,i)==right.getSample(c,i),"All-mode state audio");
   }
  }
- std::cout<<"All 15 mode states/audio and legacy bank-1 restoration PASS\n";
+ std::cout<<"All mode states/audio and legacy bank-1/2 restoration PASS\n";
 
  for(double rate:{44100.,48000.,88200.,96000.})for(int channels:{1,2}) {
   Snittaren whole,split;auto layout=whole.getBusesLayout();layout.inputBuses.set(0,juce::AudioChannelSet::canonicalChannelSet(channels));layout.outputBuses=layout.inputBuses;

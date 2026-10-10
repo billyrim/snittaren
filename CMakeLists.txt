@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(Snittaren VERSION 0.2.0 LANGUAGES C CXX)
+project(Snittaren VERSION 0.3.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_OSX_DEPLOYMENT_TARGET 12.0 CACHE STRING "Minimum macOS")
 set(JUCE_DIR "$ENV{HOME}/Downloads/JUCE-master" CACHE PATH "JUCE source directory")

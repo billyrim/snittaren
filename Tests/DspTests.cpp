@@ -13,7 +13,7 @@ int main(int argc,char** argv){
  std::cout<<"Stability / 27 macro combinations / stereo / isolation / decay PASS; noise input +/-0.2 peak="<<peak<<" sample delta="<<delta<<"\n";
  // Measured complex response of full parallel sum, after settling selection.
  std::ofstream csv(argc>1?argv[1]:"response.csv");csv<<std::unitbuf<<"mode,hz,db\n";
- for(int p=0;p<snitt::presetCount;++p){std::array<double,9> levels{};int j=0;for(double f:{80.,300.,400.,650.,1300.,2500.,4500.,8000.,12000.}){snitt::Engine filter;filter.prepare(48000);std::complex<double> acc{};for(int n=0;n<48000;++n){float v[2]{float(.1*std::sin(2*3.141592653589793*f*n/48000)),0};filter.sample(v,1,p,{0,0,0},0,false);if(n>=24000)acc+=double(v[0])*std::exp(std::complex<double>(0,-2*3.141592653589793*f*n/48000));}double db=20*std::log10(std::abs(acc)*2/24000/.1+1e-20);levels[j++]=db;csv<<snitt::presets[p].id<<","<<f<<","<<db<<"\n";}
+ for(int p=0;p<snitt::presetCount;++p){std::array<double,9> levels{};int j=0;for(double f:{80.,300.,400.,650.,1300.,2500.,4500.,8000.,12000.}){snitt::Engine filter;filter.prepare(48000);std::complex<double> acc{};for(int n=0;n<48000;++n){float v[2]{float(.1*std::sin(2*3.141592653589793*f*n/48000)),0};filter.sample(v,1,p,{0,0,0},0,false);if(n>=24000)acc+=double(v[0])*std::exp(std::complex<double>(0,-2*3.141592653589793*f*n/48000));}double db=20*std::log10(std::abs(acc)*2/24000/.1+1e-20);levels[j++]=db;csv<<snitt::presets[p].name<<","<<f<<","<<db<<"\n";}
  if(p==0)check(levels[2]>levels[0]+20&&levels[2]>levels[7]+35);
  if(p==1)check(levels[7]>levels[2]+50);
  if(p==2)check(levels[0]>levels[4]+20&&levels[7]>levels[4]+20);
@@ -42,11 +42,11 @@ int main(int argc,char** argv){
    }
    double level=20*std::log10(std::abs(acc)*2/24000/.1+1e-20);
    if(setting==0)neutral=level;else opened=level;
-   csv<<"14"<<(setting?"-open":"-centre")<<","<<frequency<<","<<level<<"\n";
+   csv<<"15"<<(setting?"-open":"-centre")<<","<<frequency<<","<<level<<"\n";
   }
   check(neutral < -26 && opened>neutral+9 && opened < -14);
  }
- std::cout<<"All 15 neutral response roles and Sprickor depth/macros PASS\n";
+ std::cout<<"Original 15 neutral response roles and cut depth/macros PASS\n";
  double jump=0;snitt::Engine transition;transition.prepare(48000);float previous=0;
  for(int n=0;n<480000;++n){float v[2]{float(.1*std::sin(2*3.141592653589793*440*n/48000)),0};
  transition.sample(v,1,(n/401)%snitt::presetCount,{(n/307)%2?1.:-1.,(n/701)%2?1.:-1.,(n/199)%2?1.:-1.},(n/1709)%2?12:-24,(n/1301)%2);

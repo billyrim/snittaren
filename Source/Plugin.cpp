@@ -19,8 +19,8 @@ void Snittaren::process(juce::AudioBuffer<float>& b,bool forced) {
 }
 void Snittaren::processBlock(juce::AudioBuffer<float>& b,juce::MidiBuffer&){process(b,false);}
 void Snittaren::processBlockBypassed(juce::AudioBuffer<float>& b,juce::MidiBuffer&){process(b,true);}
-void Snittaren::getStateInformation(juce::MemoryBlock& b){auto s=state.copyState();s.setProperty("stateVersion",1,nullptr);s.setProperty("bankRevision",2,nullptr);copyXmlToBinary(*s.createXml(),b);}
-void Snittaren::setStateInformation(const void* d,int n){auto xml=getXmlFromBinary(d,n);if(!xml||!xml->hasTagName("SNITTAREN"))return;auto s=juce::ValueTree::fromXml(*xml);if(int(s.getProperty("stateVersion",0))!=1||(int(s.getProperty("bankRevision",0))!=1 && int(s.getProperty("bankRevision",0))!=2))return;
+void Snittaren::getStateInformation(juce::MemoryBlock& b){auto s=state.copyState();s.setProperty("stateVersion",1,nullptr);s.setProperty("bankRevision",3,nullptr);copyXmlToBinary(*s.createXml(),b);}
+void Snittaren::setStateInformation(const void* d,int n){auto xml=getXmlFromBinary(d,n);if(!xml||!xml->hasTagName("SNITTAREN"))return;auto s=juce::ValueTree::fromXml(*xml);if(int(s.getProperty("stateVersion",0))!=1||(int(s.getProperty("bankRevision",0))!=1 && int(s.getProperty("bankRevision",0))!=2 && int(s.getProperty("bankRevision",0))!=3))return;
  for(auto child:s){auto* p=state.getParameter(child.getProperty("id").toString());double v=child.getProperty("value");if(!p||!std::isfinite(v))return;}
  state.replaceState(s);
 }
@@ -40,7 +40,7 @@ public:
  prev.onClick=[this]{mode.setSelectedItemIndex((mode.getSelectedItemIndex()+snitt::presetCount-1)%snitt::presetCount);};next.onClick=[this]{mode.setSelectedItemIndex((mode.getSelectedItemIndex()+1)%snitt::presetCount);};
  reset.onClick=[this]{for(auto id:{"bottom","middle","top"}){auto* param=p.state.getParameter(id);param->beginChangeGesture();param->setValueNotifyingHost(param->convertTo0to1(0));param->endChangeGesture();}};
  std::array<const char*,4> ids{"bottom","middle","top","output"},names{"Botten","Mitt","Topp","Output"};
- for(int k=0;k<4;++k){auto& s=knobs[k];s.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);s.setTextBoxStyle(k==3?juce::Slider::TextBoxBelow:juce::Slider::NoTextBox,false,80,24);s.setDoubleClickReturnValue(true,0);s.setColour(juce::Slider::rotarySliderFillColourId,juce::Colour(0xffb5d6c0));s.setTextValueSuffix(k==3?" dB":"");s.setTooltip(k==3?"Utgångsnivå":"Öppnar eller stänger området. Dubbelklick: 0.");addAndMakeVisible(s);labels[k].setText(names[k],juce::dontSendNotification);labels[k].setJustificationType(juce::Justification::centred);addAndMakeVisible(labels[k]);attachments[k]=std::make_unique<SA>(p.state,ids[k],s);}
+ for(int k=0;k<4;++k){auto& s=knobs[k];s.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);s.setTextBoxStyle(k==3?juce::Slider::TextBoxBelow:juce::Slider::NoTextBox,false,80,24);s.setDoubleClickReturnValue(true,0);s.setColour(juce::Slider::rotarySliderFillColourId,juce::Colour(0xffb5d6c0));s.setTextValueSuffix(k==3?" dB":"");s.setTooltip(k==3?"Utgångsnivå":"Förändrar klangen. Dubbelklick: 0.");addAndMakeVisible(s);labels[k].setText(names[k],juce::dontSendNotification);labels[k].setJustificationType(juce::Justification::centred);addAndMakeVisible(labels[k]);attachments[k]=std::make_unique<SA>(p.state,ids[k],s);}
  clip.setColour(juce::Label::textColourId,juce::Colours::salmon);startTimerHz(20);timerCallback();
  }
  void paint(juce::Graphics& g) override {g.fillAll(juce::Colour(0xff18221f));}

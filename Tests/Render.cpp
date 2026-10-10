@@ -19,11 +19,11 @@ int main(int argc,char** argv) {
  const juce::int64 length=synthetic?juce::int64(rate*12):reader->lengthInSamples;
  juce::File dir=juce::File::getCurrentWorkingDirectory().getChildFile(argv[2]);dir.createDirectory();juce::Random random(42);
  for(int mode=-1;mode<snitt::presetCount;++mode){snitt::Engine engine;engine.prepare(rate);juce::WavAudioFormat wav;
-  auto destination=dir.getChildFile(mode<0?"dry.wav":juce::String(snitt::presets[mode].id)+".wav");
+  auto destination=dir.getChildFile(mode<0?"dry.wav":juce::String(snitt::presets[mode].name)+".wav");
   if(destination.exists()){std::cerr<<"Refusing to overwrite "<<destination.getFullPathName()<<"\n";return 4;}
   std::unique_ptr<juce::AudioFormatWriter> writer(wav.createWriterFor(new juce::FileOutputStream(destination),rate,unsigned(channels),24,{},0));if(!writer)return 5;
   random.setSeed(42);
-  // Settle the preset blend in silence; no fade from default Tom mitt in these comparisons.
+  // Settle the preset blend in silence; no fade from default 04 in these comparisons.
   for(int n=0;n<int(rate);++n){float v[2]{};engine.sample(v,channels,std::max(0,mode),macros,0,false);}
   juce::AudioBuffer<float> buffer(channels,512);
   for(juce::int64 pos=0;pos<length;pos+=512){int count=int(std::min(juce::int64(512),length-pos));buffer.clear();
